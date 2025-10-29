@@ -1,141 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Deep Knowledge AI</title>
-<style>
-  /* ---------- GLOBAL STYLES ---------- */
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    transition: all 0.3s ease;
-  }
-  h1, h2, p {
-    margin: 0;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Knowledge AI</title>
 
-  /* ---------- HOME PAGE ---------- */
-  #home {
-    background: linear-gradient(135deg, #001f3f, #0074d9);
-    color: white;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+  <style>
+    /* ---------- GLOBAL STYLES ---------- */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      transition: all 0.3s ease;
+    }
 
-  .search-box {
-    margin-top: 40px;
-  }
-  .search-box input {
-    width: 400px;
-    max-width: 90%;
-    padding: 15px 20px;
-    font-size: 18px;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-  }
-  .search-box button {
-    padding: 15px 25px;
-    border: none;
-    border-radius: 30px;
-    background: #00aaff;
-    color: white;
-    font-size: 16px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    max-width: 900px;
-    margin-top: 60px;
-  }
-  .box {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: 500;
-  }
-  .box:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-  }
+    h1, h2, p {
+      margin: 0;
+    }
 
-  /* ---------- TOPIC PAGE ---------- */
-  #topicPage {
-    display: none;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f0f8ff, #d6ebff);
-    color: #00264d;
-    padding: 40px;
-  }
-  .back-btn {
-    background: #0074d9;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  .topic-content {
-    max-width: 800px;
-    margin: auto;
-  }
+    button {
+      font-family: inherit;
+    }
 
-  /* ---------- AI FLOATING BUTTON ---------- */
-  .ai-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: #0074d9;
-    color: white;
-    font-size: 30px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
-  .chat-box {
-    display: none;
-    position: fixed;
-    bottom: 100px;
-    right: 25px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    width: 300px;
-    padding: 15px;
-  }
-  .chat-box h3 {
-    margin-bottom: 10px;
-    color: #0074d9;
-  }
-  .chat-box input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    outline: none;
-  }
-  .chat-response {
-    margin-top: 10px;
-    color: #00264d;
-    font-size: 14px;
-  }
-</style>
+    /* ---------- HOME PAGE ---------- */
+    #home {
+      background: linear-gradient(135deg, #001f3f, #0074d9);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .search-box {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .search-box input {
+      width: 400px;
+      max-width: 90%;
+      padding: 15px 20px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+    }
+
+    .search-box button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #00aaff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .search-box button:hover {
+      background: #0090dd;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin-top: 60px;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .box:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* ---------- TOPIC PAGE ---------- */
+    #topicPage {
+      display: none;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f8ff, #d6ebff);
+      color: #00264d;
+      padding: 40px 20px;
+    }
+
+    .back-btn {
+      background: #0074d9;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #005fa3;
+    }
+
+    .topic-content {
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+
+    /* ---------- AI FLOATING BUTTON ---------- */
+    .ai-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #0074d9;
+      color: white;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .ai-btn:hover {
+      background: #005fa3;
+    }
+
+    .chat-box {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      width: 300px;
+      padding: 15px;
+      z-index: 1000;
+    }
+
+    .chat-box h3 {
+      margin-bottom: 10px;
+      color: #0074d9;
+      font-size: 18px;
+    }
+
+    .chat-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .chat-response {
+      margin-top: 10px;
+      color: #00264d;
+      font-size: 14px;
+    }
+
+    /* ---------- RESPONSIVE STYLES ---------- */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .search-box input {
+        font-size: 16px;
+        padding: 12px 18px;
+      }
+
+      .search-box button {
+        font-size: 14px;
+        padding: 12px 20px;
+      }
+
+      .ai-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
+      }
+
+      .chat-box {
+        width: 90%;
+        right: 5%;
+        bottom: 90px;
+      }
+
+      .topic-content {
+        padding: 0 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 15px;
+      }
+
+      .box {
+        font-size: 14px;
+        padding: 18px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- HOME PAGE -->
@@ -160,6 +253,7 @@
     </div>
 
     <button class="ai-btn" onclick="toggleChat()">🤖</button>
+
     <div class="chat-box" id="chatBox">
       <h3>Ask AI</h3>
       <input type="text" id="aiInput" placeholder="Ask about this topic..." onkeydown="if(event.key==='Enter')askAI()" />
@@ -167,78 +261,15 @@
     </div>
   </div>
 
-<script>
-  // ---------- DATA ----------
-  const topics = [
-    "Science","Mathematics","Technology","History",
-    "Geography","Economics","Psychology","Philosophy",
-    "Politics","Art","Sociology","Medicine",
-    "Business","Education","Communication","Environment"
-  ];
+  <script>
+    // ---------- DATA ----------
+    const topics = [
+      "Science","Mathematics","Technology","History",
+      "Geography","Economics","Psychology","Philosophy",
+      "Politics","Art","Sociology","Medicine",
+      "Business","Education","Communication","Environment"
+    ];
 
-  const knowledge = {
-    Science: "Science is the study of the natural world through observation, experimentation, and reasoning. It helps us understand how everything works, from atoms to galaxies.",
-    Mathematics: "Mathematics is the abstract science of numbers, quantity, and space. It forms the foundation for logic, computation, and real-world problem-solving.",
-    Technology: "Technology applies scientific knowledge for practical purposes, driving innovation in communication, medicine, industry, and everyday life.",
-    History: "History is the study of past events, societies, and civilizations, helping us understand how humanity evolved and learned over time.",
-    Geography: "Geography explores Earth's landscapes, environments, and human interactions with the planet.",
-    Economics: "Economics studies production, consumption, and distribution of goods and services—how people and nations manage resources.",
-    Psychology: "Psychology studies the human mind, emotions, and behavior to understand what drives human action and thought.",
-    Philosophy: "Philosophy seeks wisdom about existence, knowledge, values, reason, and ethics.",
-    Politics: "Politics deals with governance, laws, and power dynamics that shape societies and nations.",
-    Art: "Art expresses creativity and emotion through visual, auditory, or performance forms to communicate ideas.",
-    Sociology: "Sociology studies human social behavior, institutions, and cultures within societies.",
-    Medicine: "Medicine focuses on diagnosing, treating, and preventing disease to improve human health.",
-    Business: "Business involves producing and selling goods or services to generate profit while meeting consumer needs.",
-    Education: "Education is the process of gaining knowledge, skills, and values through teaching and learning.",
-    Communication: "Communication is the exchange of information and ideas through speech, writing, or media.",
-    Environment: "Environment refers to the natural world and ecosystems that sustain life on Earth."
-  };
-
-  // ---------- HOME PAGE SETUP ----------
-  const grid = document.getElementById("topicsGrid");
-  topics.forEach(t => {
-    const box = document.createElement("div");
-    box.className = "box";
-    box.textContent = t;
-    box.onclick = () => openTopic(t);
-    grid.appendChild(box);
-  });
-
-  function performSearch() {
-    const q = document.getElementById("searchInput").value.trim();
-    if(q) window.open(`https://www.google.com/search?q=${encodeURIComponent(q)}`, "_blank");
-  }
-
-  // ---------- TOPIC PAGE ----------
-  function openTopic(topic) {
-    document.getElementById("home").style.display = "none";
-    document.getElementById("topicPage").style.display = "block";
-    document.getElementById("topicTitle").textContent = topic;
-    document.getElementById("topicInfo").textContent = knowledge[topic] || "No information available.";
-  }
-
-  function goHome() {
-    document.getElementById("home").style.display = "flex";
-    document.getElementById("topicPage").style.display = "none";
-  }
-
-  // ---------- AI BOT ----------
-  function toggleChat() {
-    const box = document.getElementById("chatBox");
-    box.style.display = box.style.display === "block" ? "none" : "block";
-  }
-
-  function askAI() {
-    const input = document.getElementById("aiInput").value.trim();
-    const response = document.getElementById("chatResponse");
-    if(!input) return;
-    response.textContent = "Thinking...";
-    setTimeout(() => {
-      response.textContent = "This is a smart summary related to your question — currently simulated. In a real version, AI would answer dynamically about this topic.";
-    }, 1000);
-  }
-</script>
-
-</body>
-  </html>
+    const knowledge = {
+      Science: "Science is the study of the natural world through observation, experimentation, and reasoning. It helps us understand how everything works, from atoms to galaxies.",
+      Mathematics: "Mathematics is the abstract science of numbers, quantity, and space. It forms the foundation for logic, computation, and
